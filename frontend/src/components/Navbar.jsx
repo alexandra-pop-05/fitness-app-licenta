@@ -6,23 +6,12 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PhoneIcon from '@mui/icons-material/Phone';
 import ShopIcon from '@mui/icons-material/Shop';
 import { styled } from '@mui/system';
-import Logo from '../img/logoW.png';
+import Logo from '../assets/img/header/logoAllFit.png';
 import { useMediaQuery } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-
-const theme = createTheme({
-  breakpoints: {
-    values: {
-      lg: 1024,
-      md: 936,
-      sm: 768,
-      xs: 500,
-    },
-  },
-});
+import theme from './Theme';
 
 const NavAppBar = styled(AppBar)({
   backgroundColor: '#f28482',
