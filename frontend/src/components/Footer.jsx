@@ -1,82 +1,39 @@
-import React from 'react';
-import { styled } from '@mui/system';
-import { Grid, IconButton } from '@mui/material';
-import { Link } from 'react-router-dom';
-import InstagramIcon from '@mui/icons-material/Instagram';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
-import YouTubeIcon from '@mui/icons-material/YouTube';
-import Logo from '../assets/img/header/logoAllFit.png';
-
-/* const FooterContainer = styled(Grid)({
-  backgroundColor: '#84a59d',
-  color: '#f7ede2',
-  marginTop: 'auto',
-  width: '100%',
-  padding: '20px',
-  display: 'flex',
-});
-
-const LogoContainer = styled(Grid)({
-  textAlign: 'center',
-});
-
-const SocialIconsContainer = styled(Grid)({
-  textAlign: 'center',
-});
-
-const SocialIconButton = styled(IconButton)({
-  color: '#f7ede2',
-  marginRight: '10px',
-});
-
-export const Footer = () => {
-  return (
-    <FooterContainer container>
-      <LogoContainer item xs={12}>
-        <img src={Logo} alt="Logo" width="50px"  />
-      </LogoContainer>
-      <SocialIconsContainer item xs={12}>
-        <SocialIconButton aria-label="instagram" component={Link} to="/">
-          <InstagramIcon />
-        </SocialIconButton>
-        <SocialIconButton aria-label="facebook" component={Link} to="/">
-          <FacebookIcon />
-        </SocialIconButton>
-        <SocialIconButton aria-label="twitter" component={Link} to="/">
-          <TwitterIcon />
-        </SocialIconButton>
-        <SocialIconButton aria-label="youtube" component={Link} to="/">
-          <YouTubeIcon />
-        </SocialIconButton>
-      </SocialIconsContainer>
-    </FooterContainer>
-  );
-};
- */
+import React from "react";
+import { IconButton } from "@mui/material";
 
 
 // import footer data
 import { footer } from "../data";
+import { bgcolor } from "@mui/system";
 
 export const Footer = () => {
   // destructure footer data
-  const { logo, copyrightText } = footer;
+  const { logo, socials } = footer;
   return (
-    <footer className="bg-neutral-400 h-[125px] md:h-[195px] px-[20px]">
+    <footer className="bg-neutral-400 h-[100px] md:h-[150px] px-[20px]">
       <div
-        className="container mx-screen h-full flex justify-between items-center md:items-end md:pb-[50px]"
+        className="container mx-screen h-full flex-col md:flex-row-reverse justify-between items-center md:items-end md:pb-[50px]"
         data-aos="fade-up"
         data-aos-delay="200"
       >
+
         {/* logo */}
-        <a href="#">
-          <img className="h-[40px]" src={logo} alt="" />
+        <div className="flex-shrink-0 md:order-2 flex justify-center md:justify-start">
+        <a href="/" >
+          <img className="h-[30px] md:h-[60px] mr-4 mt-6" src={logo} alt="" />
         </a>
-        {/* copyright text */}
-        <p className="text-neutral-200 text-sm">{copyrightText}</p>
+        </div>
+
+        {/* social media icons */}
+        <div className="flex-grow-1 flex justify-end md:justify-end items-end  md:order-2  md:mt-0">
+          {socials.map((social) => (
+            <IconButton key={social.link} href={social.link} target="_blank" >
+              <social.icon style={{color: "white"}}/>
+            </IconButton>
+          ))}
+        </div>
+
       </div>
     </footer>
   );
 };
-

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 // import data
 import { banner } from "../data";
@@ -8,6 +9,12 @@ import { banner } from "../data";
   // later i will use my own data from the database fetched with axios
  
   const { titlePart1, titlePart2, subtitle, textBtn } = banner;
+  const navigate = useNavigate();
+
+  const handleJoinNow = () => {
+    navigate("/register");
+  };
+
   return (
     <section className="bg-neutral-500 h-[790px]">
       <div className="container mx-auto h-full">
@@ -32,9 +39,7 @@ import { banner } from "../data";
               className="btn btn-sm lg:btn-lg btn-secondary"
               data-aos="fade-down"
               data-aos-delay="700"
-              /* onClick={() => {
-                window.location.href = "/sign-up";
-              }} */
+              onClick={handleJoinNow}
             >
               {textBtn}
             </button>

@@ -2,7 +2,9 @@
   import { useNavigate } from 'react-router-dom';
   import Header from '../../components/Header';
   import { Footer } from '../../components/Footer';
-  import { login } from '../../data';
+  import { useEffect } from 'react';
+  import { AuthContext } from '../../context/authContext';
+  import { useContext } from 'react';
   import AuthImage from '../../assets/img/auth/authImage.jpg';
   import axios from 'axios';
 
@@ -13,8 +15,14 @@
       password: ''
     });
     const [errors, setErrors] = useState(null);
-
+    const { currentUser } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    useEffect(() => {
+      if (currentUser) {
+        navigate('/');
+      }
+    }, [currentUser, navigate]);
 
     const handleChange = e => {
       setInputs(prev => ({...prev, [e.target.name]: e.target.value}));
@@ -54,6 +62,20 @@
               id="username"
               name="username"
               /* value={username} */
+              required
+              onChange={handleChange}
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-primary-100"
+            />
+          </div>
+          <div className="mb-4">
+            <label htmlFor="nickname" className="block text-white font-bold mb-2">
+              Nickname
+            </label>
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              /* value={nickname} */
               required
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-primary-100"
