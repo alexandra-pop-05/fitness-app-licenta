@@ -40,7 +40,7 @@ export const AboutMe = () => {
         <div data-aos="fade-up" data-aos-delay="400">
           <a
             className="link flex items-center gap-x-4 hover:gap-x-6 transition-all"
-            href="#"
+            href="/register"
           >
             {link}
             <IoIosArrowDroprightCircle className="text-2xl" />

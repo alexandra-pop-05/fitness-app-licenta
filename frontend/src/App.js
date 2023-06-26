@@ -1,38 +1,39 @@
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-import { Navbar } from "./components/Navbar";
+import Aos from "aos";
+import "aos/dist/aos.css";
 import { Footer } from "./components/Footer";
 import { Home } from "./pages/home/Home";
-import { Shop } from "./pages/shop/Shop";
+import { Shop } from "./pages/shop/SingleProducts/Shop";
+import Pricing from "./pages/shop/Bundles/Pricing";
 import { AboutMe } from "./pages/about_me/AboutMe";
 import { Contact } from "./pages/contact/Contact";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { Workouts } from "./pages/workouts/Workouts";
 import { MyAccount } from "./pages/auth/account/MyAccount";
-//import Shop from "@mui/icons-material/Shop";
-import Aos from "aos";
-import "aos/dist/aos.css";
 import Banner from "./components/Banner";
 import Header from "./components/Header";
 import Community from "./pages/testimonials/Community";
-import Faq from "./components/Faq";
+import QA from "./components/QA";
 import Join from "./pages/subscription/Join";
+import Cart from "./pages/cart/Cart";
+import ScrollToTop from "./ScrollToTop";
+import { Product } from "./pages/shop/SingleProducts/Product";
+import { Bundles } from "./pages/shop/Bundles/Bundles";
+import { MyProducts } from "./pages/myProducts/MyProducts";
 
 const Layout = () => {
   return (
     <>
-      {/* <Navbar />
-      <Outlet />
-  <Footer /> */}
       <Header />
       <Outlet />
       <Banner />
       <AboutMe />
       <Workouts />
-      <Shop />
+      <Pricing />
       <Community />
-      <Faq />
+      <QA />
       <Join />
       <Footer />
     </>
@@ -48,10 +49,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      /* {
-        path: "/about_me",
-        element: <AboutMe />,
-      }, */
       {
         path: "/workouts",
         element: <Workouts />,
@@ -60,21 +57,9 @@ const router = createBrowserRouter([
         path: "/contact",
         element: <Contact />,
       },
-      /* {
-        path: "/register",
-        element: <Register />,
-      }, */
-      /* {
-        path: "/login",
-        element: <Login />,
-      }, */
       {
         path: "/my_account",
         element: <MyAccount />,
-      },
-      {
-        path: "/shop",
-        element: <Shop />,
       },
     ],
   },
@@ -92,6 +77,26 @@ const router = createBrowserRouter([
     path: "/about_me",
     element: <AboutMe />,
   },
+  {
+    path: "/shop",
+    element: <Shop />,
+  },
+  {
+    path: "/shop/subscriptions/:subscriptionId",
+    element: <Bundles />,
+  },
+  {
+    path: "/shop/products/:productId",
+    element: <Product />,
+  },
+  {
+    path: "/cart",
+    element: <Cart />,
+  },
+  {
+    path: "/myProducts",
+    element: <MyProducts />,
+  },
 ]);
 
 function App() {
@@ -102,7 +107,9 @@ function App() {
   return (
     <div className="App">
       <div className="max-w-screen mx-auto bg-page overflow-hidden relative">
-        <RouterProvider router={router} />
+        <RouterProvider router={router}>
+          <ScrollToTop />
+        </RouterProvider>
       </div>
     </div>
   );

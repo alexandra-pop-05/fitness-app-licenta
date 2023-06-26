@@ -11,7 +11,17 @@ import CommunityImg1 from "../src/assets/img/community/img1.png";
 import CommunityImg2 from "../src/assets/img/community/img2.png";
 import CommunityImg3 from "../src/assets/img/community/img3.png";
 import CommunityImg4 from "../src/assets/img/community/img4.png";
-import JoinImg from "../src/assets/img/join/woman.png";
+import ShopBanner1 from "../src/assets/img/shop/banner/bannerShop.jpg";
+import Bundle1 from "../src/assets/img/shop/bundles/basic.jpg";
+import Bundle2 from "../src/assets/img/shop/bundles/premium.jpg";
+import Bundle3 from "../src/assets/img/shop/bundles/motivation.jpg";
+import MealPic1 from "../src/assets/img/shop/meal1.jpg";
+import MealPic2 from "../src/assets/img/shop/meal2.jpg";
+import MealPic3 from "../src/assets/img/shop/meal3.jpg";
+import MealPic4 from "../src/assets/img/shop/meal4.jpg";
+import MealPic5 from "../src/assets/img/shop/meal5.jpg";
+import PlanPic1 from "../src/assets/img/shop/plan1.jpg";
+import JoinImg from "../src/assets/img/join/joinImg.jpg";
 import AuthImage from "../src/assets/img/auth/authImage.jpg";
 // icons
 import UsersIcn from "../src/assets/img/about/icons/users-icn.svg";
@@ -19,6 +29,10 @@ import CalendarIcn from "../src/assets/img/workouts/icons/calendar.svg";
 import PriceIcn from "../src/assets/img/pricing/icons/price.svg";
 import CommunityIcn from "../src/assets/img/community/icons/community-icn.svg";
 import QuestionMarkIcn from "../src/assets/img/faq/icons/question-mark.svg";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 
 export const header = {
   logo: Logo,
@@ -30,10 +44,10 @@ export const header = {
 export const nav = [
   { name: "Home", href: "/" },
   { name: "About Me", href: "/about_me" },
-  { name: "Workouts", href: "/" },
-  { name: "Pricing", href: "/" },
+  { name: "Shop", href: "/shop" },
   { name: "Community", href: "/" },
-  { name: "FAQ", href: "/" },
+  { name: "Q&A", href: "/" },
+  { name: "My Products", href: "/myProducts" },
 ];
 
 export const banner = {
@@ -61,19 +75,19 @@ export const workouts = {
   programs: [
     {
       image: ResistanceImg,
-      name: "Resistance",
+      name: "Text",
     },
     {
       image: BoxingImg,
-      name: "Boxing",
+      name: "Text",
     },
     {
       image: BodyPumpImg,
-      name: "Body Pump",
+      name: "Text",
     },
     {
       image: YogaImg,
-      name: "Yoga",
+      name: "Text",
     },
     {
       image: FullBodyImg,
@@ -92,7 +106,7 @@ export const workouts = {
 
 export const pricing = {
   icon: PriceIcn,
-  title: "Pricing plan",
+  title: "Bundles prices",
   plans: [
     {
       name: "Basic",
@@ -130,19 +144,131 @@ export const pricing = {
   ],
 };
 
+export const shopBanner = {
+  titlePart1: "Buy programs that help you achieve your goals.",
+  titlePart2: "– stay consistent.",
+  subtitle: "Achieve long term results with BALANCE & LOVE for your body.",
+  image: ShopBanner1,
+};
+
+export const shop = {
+  icon: PriceIcn,
+  title: "Shop more",
+  plans: [
+    {
+      name: "Meal plan for losing weight",
+      price: "20",
+      delay: 600,
+      image: MealPic1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      name: "Meal plan for gaining weight",
+      price: "35",
+      delay: 800,
+      image: MealPic2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      name: "Meal plan for gaining weight",
+      price: "35",
+      delay: 800,
+      image: MealPic3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      name: "Meal plan for gaining weight",
+      price: "35",
+      delay: 800,
+      image: MealPic4,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      name: "Meal plan for gaining weight",
+      price: "35",
+      delay: 800,
+      image: MealPic5,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      name: "Meal plan for gaining weight",
+      price: "35",
+      delay: 800,
+      image: MealPic1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+  ],
+};
+
+export const bundles = {
+  icon: PriceIcn,
+  bundlesList: [
+    {
+      title: "Basic bundle",
+      image: Bundle1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      title: "Premium bundle",
+      image: Bundle2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      title: "Elite bundle",
+      image: Bundle3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+  ],
+  btn: "Add to cart",
+};
+
+export const products = {
+  icon: PriceIcn,
+  productsList: [
+    {
+      title: "Meal plan for losing weight",
+      image: Bundle1,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      title: "Meal plan for gaining weight",
+      image: Bundle2,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+    {
+      title: "Meal plan for building muscle",
+      image: Bundle3,
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
+    },
+  ],
+  btn: "Add to cart",
+};
+
 export const community = {
   icon: CommunityIcn,
   title: "Community",
   testimonials: [
     {
       image: CommunityImg1,
-      name: "Mark A.",
+      name: "Alexandra.",
       message:
         "“Great location, great price and great, helpful people. What to want more?”",
     },
     {
       image: CommunityImg2,
-      name: "Lauren K.",
+      name: "Maria.",
       message:
         "“Gymme changed my life. Not only physically but mentally as well. I’m a better mother, and all around better human being because of this gym.”",
     },
@@ -161,9 +287,9 @@ export const community = {
   ],
 };
 
-export const faq = {
+export const qa = {
   icon: QuestionMarkIcn,
-  title: "FAQ",
+  title: "Q&A",
   accordions: [
     {
       question: "How do I use a training program?",
@@ -202,7 +328,7 @@ export const join = {
   image: JoinImg,
   title: "Wanna join & have fun?",
   subtitle:
-    "We’ll keep you updated on the things you need to know about Gymme. Nothing more, nothing less.",
+    "Join my community and get access to all the training programs and workout plans.",
   btnText: "Join now",
 };
 
@@ -215,5 +341,22 @@ export const login = {
 
 export const footer = {
   logo: Logo,
-  copyrightText: "All rights reserved. All fit 2023.",
+  socials: [
+    {
+      icon: FacebookIcon,
+      link: "https://www.facebook.com/",
+    },
+    {
+      icon: TwitterIcon,
+      link: "https://twitter.com/",
+    },
+    {
+      icon: InstagramIcon,
+      link: "https://www.instagram.com/",
+    },
+    {
+      icon: YouTubeIcon,
+      link: "https://www.youtube.com/",
+    },
+  ],
 };
