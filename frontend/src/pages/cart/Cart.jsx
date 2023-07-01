@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useFetcher, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeProduct, setCart } from "../../redux/cartRedux";
@@ -22,11 +22,19 @@ const Cart = () => {
   const [stripeToken, setStripeToken] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const email = currentUser?.email; //this is used for the Stripe payment email field 
+  const userId = currentUser?.user_id;
+  const [checkoutError, setCheckoutError] = useState(null);
 
-  /* console.log('email', email) */
   useEffect(() => {
     // update localStorage when cart state changes
     localStorage.setItem("cart", JSON.stringify(cart));
+
+    const addPurchasedProductsToUser = async (productId) => {
+      await axios.post("http://localhost:8800/api/myproducts", {
+        user_id: userId,
+        product_id: productId,
+      } );
+    };
   
     const makeRequest = async () => {
       try {
@@ -39,6 +47,12 @@ const Cart = () => {
 
         // clear cart after payment is successful 
         dispatch(setCart({ products: [], quantity: 0, total: 0 }));
+
+        const productIds = cart.products.map((product) => product.product_id);
+        for(const productId of productIds) {
+          await addPurchasedProductsToUser(productId);
+        }
+        
         navigate('/myProducts');
       } catch (error) {
         console.log(error);
@@ -46,6 +60,51 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart, navigate]);
+
+/*   useEffect(() => {
+    // update localStorage when cart state changes
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]); */
+
+  /* const makeRequest = async () => {
+    try {
+      const res = await axios.post("http://localhost:8800/api/payment", {
+        tokenId: stripeToken.id,
+        amount: cart.total * 100,
+        email: currentUser?.email,
+      });
+      console.log(res.data);
+
+      // clear cart after payment is successful
+      dispatch(setCart({ products: [], quantity: 0, total: 0 }));
+
+      const productIds = cart.products.map((product) => product.product_id);
+      for (const productId of productIds) {
+        await axios.post("http://localhost:8800/api/myproducts", {
+          user_id: userId,
+          product_id: productId,
+        });
+      }
+
+      navigate("/myProducts");
+    } catch (error) {
+      console.log(error);
+      setCheckoutError("An error occurred during checkout.");
+    }
+  }; */
+
+ // const [stripeToken, setStripeToken] = useState(null);
+
+/*   useEffect(() => {
+    if (stripeToken) {
+      makeRequest();
+    }
+  }, [stripeToken]);
+
+  useEffect(() => {
+    // Update localStorage when cart state changes
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]); */
 
   // STRIPE TOKEN
   const onToken = (token) => {
@@ -71,6 +130,9 @@ const Cart = () => {
     navigate('/shop');
   };
 
+
+
+  
   return (
     <>
       <Header />
@@ -96,7 +158,7 @@ const Cart = () => {
           >
             {cart.products.map((product) => (
               <div
-                key={product.id}
+                key={product.product_id}
                 className="group rounded-md overflow-hidden shadow-md mb-8 bg-purple-100"
               >
                 <div className="flex">
@@ -149,6 +211,8 @@ const Cart = () => {
               amount={Math.round(cart.total * 100)}
               token={onToken}
               stripeKey={KEY}
+              disabled={cart.products.length === 0}
+              /* email={email} */
             >
               <button className="btn btn-lg rounded-[1px] bg-transparent border border-primary-200 text-primary-200 hover:bg-primary-200 hover:text-white mr-4">
                 Checkout

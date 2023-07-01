@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { setCart } from "../../redux/cartRedux";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import axios from "axios";
+import {AuthContext} from "../../context/authContext";
 
 export const MyProducts = () => {
   const dispatch = useDispatch();
   const [products, setProducts] = useState([]);
+  const { currentUser} = useContext(AuthContext);
 
   useEffect(() => {
     fetchProducts();
@@ -15,7 +17,17 @@ export const MyProducts = () => {
 
   const fetchProducts = async () => {
     try {
-        const res = await axios.get("http://localhost:8800/api/myproducts");
+       /* const token = currentUser?.access_token;
+       const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+       }; */
+        const res = await axios.get("http://localhost:8800/api/myproducts", /* {
+          headers: {
+            Authorization: `Bearer ${currentUser?.access_token}`,
+          },
+        } */);
         const {products} = res.data;
         setProducts(products);
     } catch (error) {

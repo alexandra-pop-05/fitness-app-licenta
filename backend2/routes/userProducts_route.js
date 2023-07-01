@@ -11,6 +11,6 @@ const router = express.Router();
 router.get("/myproducts", authenticateUser, getProductsOfUser);
 
 //ADD A PRODUCT TO A USER
-router.post("/myproducts/:id", authenticateUser, addProductToUser);
+router.post("/myproducts", addProductToUser);
 
 module.exports = router;
