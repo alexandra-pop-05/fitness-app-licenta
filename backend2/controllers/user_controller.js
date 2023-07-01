@@ -1,5 +1,5 @@
 const express = require("express");
-
+const db = require("../db");
 //GET USER BY ID
 const getUser = (req, res) => {
   try {

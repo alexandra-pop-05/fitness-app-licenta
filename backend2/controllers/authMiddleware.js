@@ -10,23 +10,22 @@ const authenticateUser = (req, res, next) => {
 
   try {
     // Verify the token and extract the user_id
-    const decoded = jwt.verify(
-      token,
-      process.env.JWT_SECRET,
-      (err, decoded) => {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    /* (err, decoded) => {
         if (err) {
           return res.status(403).json({ error: "Token is not valid" });
         }
         return decoded;
       }
-    );
+    ); */
 
     console.log(decoded); // log the decoded token to the console
 
-    req.user = { id: decoded.user_id }; // Attach the user_id to req.user
+    req.user = { user_id: decoded.user_id }; // Attach the user_id to req.user
 
     next(); // Move to the next middleware or route handler
   } catch (error) {
+    console.error(error);
     return res.status(401).json({ error: "Unauthorized" });
   }
 };

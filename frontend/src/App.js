@@ -3,11 +3,9 @@ import { Outlet } from "react-router-dom";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Footer } from "./components/Footer";
-import { Home } from "./pages/home/Home";
 import { Shop } from "./pages/shop/SingleProducts/Shop";
 import Pricing from "./pages/shop/Bundles/Pricing";
 import { AboutMe } from "./pages/about_me/AboutMe";
-import { Contact } from "./pages/contact/Contact";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { Workouts } from "./pages/workouts/Workouts";
@@ -46,16 +44,8 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       {
-        path: "/",
-        element: <Home />,
-      },
-      {
         path: "/workouts",
         element: <Workouts />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
       },
       {
         path: "/my_account",

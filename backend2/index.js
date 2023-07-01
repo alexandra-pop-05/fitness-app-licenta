@@ -6,6 +6,8 @@ const oneTimeProductsRouter = require("./routes/oneTimeProducts_routes");
 const stripeRouter = require("./routes/stripe_route");
 const userProductsRouter = require("./routes/userProducts_route");
 const userRouter = require("./routes/user_router");
+const authenticateUser = require("./controllers/authMiddleware");
+
 // DOTENV
 require("dotenv").config();
 
