@@ -35,4 +35,20 @@ const getProducts = (req, res) => {
   });
 };
 
-module.exports = { getProductById, getProducts };
+//ADD PRODUCTS
+const addProducts = (req, res) => {
+  const q =
+    "INSERT INTO sql_app.onetimeproducts(`name`, `image`, `description`, `price`, `offers`) VALUES ?";
+  const values = req.body.products.map((product) => [
+    product.name,
+    product.image,
+    product.description,
+    product.price,
+    JSON.stringify(product.offers),
+  ]);
+  db.query(q, [values], (err, data) => {
+    if (err) return res.json(err);
+    else return res.status(200).json("Product was added!");
+  });
+};
+module.exports = { getProductById, getProducts, addProducts };
