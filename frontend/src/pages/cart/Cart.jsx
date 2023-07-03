@@ -21,7 +21,7 @@ const Cart = () => {
   const dispatch = useDispatch();
   const [stripeToken, setStripeToken] = useState(null);
   const { currentUser } = useContext(AuthContext);
-  const email = currentUser?.email; //this is used for the Stripe payment email field 
+  const email = currentUser?.email; //this is used for the Stripe payment email field
   const userId = currentUser?.user_id;
   const [checkoutError, setCheckoutError] = useState(null);
 
@@ -33,11 +33,13 @@ const Cart = () => {
       await axios.post("http://localhost:8800/api/myproducts", {
         user_id: userId,
         product_id: productId,
-      } );
+      });
     };
-  
+
     const makeRequest = async () => {
       try {
+        console.log("cart.total:", cart.total); // Check the value of cart.total
+        console.log("cart:", cart); // Check the cart object
         const res = await axios.post("http://localhost:8800/api/payment", {
           tokenId: stripeToken.id,
           amount: cart.total * 100,
@@ -45,15 +47,15 @@ const Cart = () => {
         });
         console.log(res.data);
 
-        // clear cart after payment is successful 
+        // clear cart after payment is successful
         dispatch(setCart({ products: [], quantity: 0, total: 0 }));
 
         const productIds = cart.products.map((product) => product.product_id);
-        for(const productId of productIds) {
+        for (const productId of productIds) {
           await addPurchasedProductsToUser(productId);
         }
-        
-        navigate('/myProducts');
+
+        navigate("/myProducts");
       } catch (error) {
         console.log(error);
       }
@@ -61,7 +63,7 @@ const Cart = () => {
     stripeToken && makeRequest();
   }, [stripeToken, cart, navigate]);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     // update localStorage when cart state changes
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]); */
@@ -93,9 +95,9 @@ const Cart = () => {
     }
   }; */
 
- // const [stripeToken, setStripeToken] = useState(null);
+  // const [stripeToken, setStripeToken] = useState(null);
 
-/*   useEffect(() => {
+  /*   useEffect(() => {
     if (stripeToken) {
       makeRequest();
     }
@@ -114,7 +116,9 @@ const Cart = () => {
   // REMOVE PRODUCT FROM CART
   const handleRemoveFromCart = (productId) => {
     // Remove the product from the cart if the quantity is 1
-    const product = cart.products.find((product) => product.product_id === productId);
+    const product = cart.products.find(
+      (product) => product.product_id === productId
+    );
 
     if (product) {
       dispatch(removeProduct(productId));
@@ -127,12 +131,9 @@ const Cart = () => {
   // continue shopping button
   const handleContinueShopping = (e) => {
     e.preventDefault();
-    navigate('/shop');
+    navigate("/shop");
   };
 
-
-
-  
   return (
     <>
       <Header />
@@ -197,7 +198,7 @@ const Cart = () => {
             <div className="flex items-center justify-between">
               <div className="text-xl font-bold">Subtotal:</div>
               <div className="text-xl font-bold text-primary-200">
-              ${cart.total.toFixed(2)} 
+                ${cart.total.toFixed(2)}
               </div>
             </div>
           </div>
