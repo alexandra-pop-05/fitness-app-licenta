@@ -13,7 +13,7 @@ import { useContext } from "react";
 
 
 export const Bundles = () => {
-  const { subscriptionId } = useParams();
+  const { productId } = useParams();
   const [bundleData, setBundleData] = useState(null);
   const { currentUser } = useContext(AuthContext);
   const [quantity, setQuantity] = useState(1);
@@ -25,7 +25,7 @@ export const Bundles = () => {
     const getBundleData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:8800/api/subscriptions/${subscriptionId}`
+          `http://localhost:8800/api/subscriptions/${productId}`
         );
         const data = res.data[0];
         setBundleData(data);
@@ -34,7 +34,7 @@ export const Bundles = () => {
       }
     };
     getBundleData();
-  }, [subscriptionId]);
+  }, [productId]);
 
   if (!bundleData) {
     // Handle the case when bundleData is not available
@@ -49,7 +49,7 @@ export const Bundles = () => {
       dispatch(addProduct(bundleData, quantity));
       // IF PRODUCT IS ADDED TO CART, CONSOLE LOG IT
       if (quantity >= 1) {
-        console.log(`Adding product ${bundleData.name} with id ${subscriptionId} to the cart.`);  
+        console.log(`Adding product ${bundleData.name} with id ${productId} to the cart.`);  
       }
     } else {
       // Handle the case when the user is not logged in

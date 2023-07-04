@@ -7,6 +7,6 @@ const {
 const router = express.Router();
 
 router.get("/subscriptions", getSubscriptions);
-router.get("/subscriptions/:subscriptionId", getSubscriptionById);
+router.get("/subscriptions/:productId", getSubscriptionById);
 
 module.exports = router;

@@ -12,11 +12,11 @@ const getSubscriptions = (req, res) => {
 
 //GET SUBSCRIPTION BY ID
 const getSubscriptionById = (req, res) => {
-  const { subscriptionId } = req.params;
+  const { productId } = req.params;
 
-  const q = "SELECT * FROM sql_app.subscriptions WHERE subscription_id = ?";
+  const q = "SELECT * FROM sql_app.subscriptions WHERE product_id = ?";
 
-  db.query(q, [subscriptionId], (err, data) => {
+  db.query(q, [productId], (err, data) => {
     if (err) return res.status(500).json(err);
     else if (res.length === 0) {
       res.status(404).json({ err: "Product not found." });

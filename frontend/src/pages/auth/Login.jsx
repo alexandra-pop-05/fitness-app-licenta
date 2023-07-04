@@ -4,7 +4,6 @@
   import { Footer } from '../../components/Footer';
   import AuthImage from '../../assets/img/auth/authImage.jpg';
   import { AuthContext } from '../../context/authContext';
-  import axios from 'axios';
 
   export const Login = () => {
     const [inputs, setInputs] = useState({
@@ -17,9 +16,6 @@
 
     const {currentUser, login} = useContext(AuthContext); // Destructure the login function from authContext
     
-    //set the default headers for all Axios requests
-    //axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser?.token}`;
-
     // Redirect to home if the user is already logged in
     useEffect(() => {
       if (currentUser) {
@@ -30,12 +26,12 @@
     const handleChange = e => {
       setInputs(prev => ({...prev, [e.target.name]: e.target.value}));
     }
+
   
     const handleSubmit = async (event) => {
       event.preventDefault(); // Prevent the form from submitting
       try {
         await login(inputs); // Call the login function from authContext with the inputs from the form
-        //axios.defaults.headers.common['Authorization'] = `Bearer ${currentUser?.token}`; //update the headers with the new token after login
         navigate('/');
       } catch (error) {
         setErrors(error.response.data);
@@ -57,7 +53,6 @@
               type="text"
               id="username"
               name="username"
-              /* value={username} */
               required
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-primary-100"
@@ -71,7 +66,6 @@
               type="password"
               id="password"
               name="password"
-             /*  value={password} */
               required
               onChange={handleChange}
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring focus:ring-primary-100 "
@@ -83,9 +77,11 @@
             </button>
           </div>
           {errors && (
-            <div className="text-red-500 text-sm mt-2 text-center">
+            <div className="text-red-500 text-sm mt-2 flex text-center">
               {Object.keys(errors).map((key) => (
-                <div key={key}>{errors[key]}</div>
+                <div key={key} className="my-1">
+                 {errors[key].replace(/([a-z])([A-Z])/g, '$1 $2')}
+              </div>
               ))}
             </div>
           )}

@@ -6,6 +6,7 @@ import { Footer } from "./components/Footer";
 import { Shop } from "./pages/shop/SingleProducts/Shop";
 import Pricing from "./pages/shop/Bundles/Pricing";
 import { AboutMe } from "./pages/about_me/AboutMe";
+import { About } from "./pages/about/About";
 import { Register } from "./pages/auth/Register";
 import { Login } from "./pages/auth/Login";
 import { Workouts } from "./pages/workouts/Workouts";
@@ -14,12 +15,13 @@ import Banner from "./components/Banner";
 import Header from "./components/Header";
 import Community from "./pages/testimonials/Community";
 import QA from "./components/QA";
-import Join from "./pages/subscription/Join";
+import Join from "./pages/Join/Join";
 import Cart from "./pages/cart/Cart";
 import ScrollToTop from "./ScrollToTop";
 import { Product } from "./pages/shop/SingleProducts/Product";
 import { Bundles } from "./pages/shop/Bundles/Bundles";
 import { MyProducts } from "./pages/myProducts/MyProducts";
+import { Write } from "./pages/testimonials/Write";
 
 const Layout = () => {
   return (
@@ -27,7 +29,7 @@ const Layout = () => {
       <Header />
       <Outlet />
       <Banner />
-      <AboutMe />
+      <About />
       <Workouts />
       <Pricing />
       <Community />
@@ -72,7 +74,7 @@ const router = createBrowserRouter([
     element: <Shop />,
   },
   {
-    path: "/shop/subscriptions/:subscriptionId",
+    path: "/shop/subscriptions/:productId",
     element: <Bundles />,
   },
   {
@@ -86,6 +88,10 @@ const router = createBrowserRouter([
   {
     path: "/myProducts",
     element: <MyProducts />,
+  },
+  {
+    path: "/testimonials",
+    element: <Write />,
   },
 ]);
 
