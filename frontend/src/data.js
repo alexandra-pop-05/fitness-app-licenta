@@ -1,12 +1,12 @@
-// images
+// import images
 import Logo from "../src/assets/img/header/logo2.png";
-import ResistanceImg from "../src/assets/img/workouts/resistance.png";
-import BoxingImg from "../src/assets/img/workouts/boxing.png";
-import BodyPumpImg from "../src/assets/img/workouts/body-pump.png";
-import YogaImg from "../src/assets/img/workouts/yoga.png";
-import FullBodyImg from "../src/assets/img/workouts/full-body.png";
-import FitnessImg from "../src/assets/img/workouts/fitness.png";
-import BattleRopeImg from "../src/assets/img/workouts/battle-rope.png";
+import Resistance from "../src/assets/img/workouts/resistance.png";
+import Boxing from "../src/assets/img/workouts/boxing.png";
+import BodyPump from "../src/assets/img/workouts/body-pump.png";
+import Yoga from "../src/assets/img/workouts/yoga.png";
+import FullBody from "../src/assets/img/workouts/full-body.png";
+import Fitness from "../src/assets/img/workouts/fitness.png";
+import BattleRope from "../src/assets/img/workouts/battle-rope.png";
 import CommunityImg1 from "../src/assets/img/community/img1.png";
 import CommunityImg2 from "../src/assets/img/community/img2.png";
 import CommunityImg3 from "../src/assets/img/community/img3.png";
@@ -15,17 +15,11 @@ import ShopBanner1 from "../src/assets/img/shop/banner/bannerShop.jpg";
 import Bundle1 from "../src/assets/img/shop/bundles/basic.jpg";
 import Bundle2 from "../src/assets/img/shop/bundles/premium.jpg";
 import Bundle3 from "../src/assets/img/shop/bundles/motivation.jpg";
-import MealPic1 from "../src/assets/img/shop/meal1.jpg";
-import MealPic2 from "../src/assets/img/shop/meal2.jpg";
-import MealPic3 from "../src/assets/img/shop/meal3.jpg";
-import MealPic4 from "../src/assets/img/shop/meal4.jpg";
-import MealPic5 from "../src/assets/img/shop/meal5.jpg";
-import PlanPic1 from "../src/assets/img/shop/plan1.jpg";
 import JoinImg from "../src/assets/img/join/joinImg.jpg";
 import AuthImage from "../src/assets/img/auth/authImage.jpg";
 // icons
 import UsersIcn from "../src/assets/img/about/icons/users-icn.svg";
-import CalendarIcn from "../src/assets/img/workouts/icons/calendar.svg";
+import CalendarIcon from "../src/assets/img/workouts/icons/calendar.svg";
 import PriceIcn from "../src/assets/img/pricing/icons/price.svg";
 import CommunityIcn from "../src/assets/img/community/icons/community-icn.svg";
 import QuestionMarkIcn from "../src/assets/img/faq/icons/question-mark.svg";
@@ -45,8 +39,7 @@ export const nav = [
   { name: "Home", href: "/" },
   { name: "About Me", href: "/about_me" },
   { name: "Shop", href: "/shop" },
-  { name: "Community", href: "/" },
-  { name: "Q&A", href: "/" },
+  { name: "Testimonials", href: "/testimonials" },
   { name: "My Products", href: "/myProducts" },
 ];
 
@@ -69,36 +62,48 @@ export const about = {
   link: "Join Now",
 };
 
+export const aboutMe = {
+  icon: UsersIcn,
+  title: "About me",
+  subtitle1:
+    "Welcome to my fitness world! I am excited to be your companion on your journey to a healthier and more balanced lifestyle. My name is Alexandra, and I am a passionate fitness coach dedicated to helping individuals like you achieve their fitness goals and unlock their full potential.",
+  subtitle2:
+    "With a deep-rooted love for fitness and personal growth, I have spent the past eight years immersing myself in the gym culture, constantly expanding my knowledge and refining my skills. Through my own personal experiences and continuous learning, I have gained valuable insights into the transformative power of fitness and its profound impact on both the body and mind.",
+  subtitle3:
+    "My approach to coaching is rooted in empathy, encouragement, and a belief in the untapped capabilities within each individual. I am here to provide you with unwavering support and guidance as we navigate the intricacies of your fitness journey together.",
+  link: "Join Now",
+};
+
 export const workouts = {
-  icon: CalendarIcn,
+  icon: CalendarIcon,
   title: "Training programs",
   programs: [
     {
-      image: ResistanceImg,
-      name: "Text",
+      image: Resistance,
+      name: "Resistance",
     },
     {
-      image: BoxingImg,
-      name: "Text",
+      image: Boxing,
+      name: "Fun cardio",
     },
     {
-      image: BodyPumpImg,
-      name: "Text",
+      image: BodyPump,
+      name: "Body pump",
     },
     {
-      image: YogaImg,
-      name: "Text",
+      image: Yoga,
+      name: "Yoga",
     },
     {
-      image: FullBodyImg,
+      image: FullBody,
       name: "Full Body",
     },
     {
-      image: FitnessImg,
-      name: "Fitness",
+      image: Fitness,
+      name: "Weight lifting",
     },
     {
-      image: BattleRopeImg,
+      image: BattleRope,
       name: "Battle Rope",
     },
   ],
@@ -107,41 +112,6 @@ export const workouts = {
 export const pricing = {
   icon: PriceIcn,
   title: "Bundles prices",
-  plans: [
-    {
-      name: "Basic",
-      price: "20",
-      list: [
-        { name: "unlimited gym access" },
-        { name: "1 training programs" },
-        { name: "free fitness consultation" },
-      ],
-      delay: 600,
-    },
-    {
-      name: "Premium",
-      price: "35",
-      list: [
-        { name: "unlimited gym access" },
-        { name: "5 training programs" },
-        { name: "free fitness consultation" },
-        { name: "personal trainer" },
-      ],
-      delay: 800,
-    },
-    {
-      name: "Elite",
-      price: "49",
-      list: [
-        { name: "unlimited gym access" },
-        { name: "all training programs" },
-        { name: "free fitness consultation" },
-        { name: "personal trainer" },
-        { name: "50% off drinks" },
-      ],
-      delay: 1000,
-    },
-  ],
 };
 
 export const shopBanner = {
@@ -154,137 +124,23 @@ export const shopBanner = {
 export const shop = {
   icon: PriceIcn,
   title: "Shop more",
-  plans: [
-    {
-      name: "Meal plan for losing weight",
-      price: "20",
-      delay: 600,
-      image: MealPic1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      name: "Meal plan for gaining weight",
-      price: "35",
-      delay: 800,
-      image: MealPic2,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      name: "Meal plan for gaining weight",
-      price: "35",
-      delay: 800,
-      image: MealPic3,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      name: "Meal plan for gaining weight",
-      price: "35",
-      delay: 800,
-      image: MealPic4,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      name: "Meal plan for gaining weight",
-      price: "35",
-      delay: 800,
-      image: MealPic5,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      name: "Meal plan for gaining weight",
-      price: "35",
-      delay: 800,
-      image: MealPic1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-  ],
 };
 
 export const bundles = {
   icon: PriceIcn,
-  bundlesList: [
-    {
-      title: "Basic bundle",
-      image: Bundle1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      title: "Premium bundle",
-      image: Bundle2,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      title: "Elite bundle",
-      image: Bundle3,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-  ],
+
   btn: "Add to cart",
 };
 
 export const products = {
   icon: PriceIcn,
-  productsList: [
-    {
-      title: "Meal plan for losing weight",
-      image: Bundle1,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      title: "Meal plan for gaining weight",
-      image: Bundle2,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-    {
-      title: "Meal plan for building muscle",
-      image: Bundle3,
-      description:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit.",
-    },
-  ],
+
   btn: "Add to cart",
 };
 
 export const community = {
   icon: CommunityIcn,
   title: "Community",
-  testimonials: [
-    {
-      image: CommunityImg1,
-      name: "Alexandra.",
-      message:
-        "“Great location, great price and great, helpful people. What to want more?”",
-    },
-    {
-      image: CommunityImg2,
-      name: "Maria.",
-      message:
-        "“Gymme changed my life. Not only physically but mentally as well. I’m a better mother, and all around better human being because of this gym.”",
-    },
-    {
-      image: CommunityImg3,
-      name: "Jhon D.",
-      message:
-        "“Love these workouts! Trainers are knowledgeable and motivating. Gymme is wonderful!”",
-    },
-    {
-      image: CommunityImg4,
-      name: "Anne R.",
-      message:
-        "“Love these workouts! Trainers are knowledgeable and motivating. Gymme is wonderful!”",
-    },
-  ],
 };
 
 export const qa = {

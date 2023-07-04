@@ -23,16 +23,14 @@ const PlanList = () => {
     }
   };
 
-  const handleJoinNow = async (subscription_id) => {
-    /* const selectedBundle = plans[currentIndex].name.toLowerCase();
-    navigate(`/shop/bundles/${selectedBundle}`); */
+  const handleJoinNow = async (product_id) => {
     try {
       const res = await axios.get(
-        `http://localhost:8800/api/subscriptions/${subscription_id}`
+        `http://localhost:8800/api/subscriptions/${product_id}`
       );
       const productData = res.data[0];
 
-      navigate(`/shop/subscriptions/${subscription_id}`, {
+      navigate(`/shop/subscriptions/${product_id}`, {
         state: productData,
       });
     } catch (err) {
@@ -90,7 +88,7 @@ const PlanList = () => {
                       {plan.list.map((item, index) => (
                         <li
                           className="flex items-center gap-x-[10px]"
-                          key={index}
+                          key={item.name}
                         >
                           <div>
                             <BsCheckCircleFill className="text-lg" />
@@ -103,7 +101,7 @@ const PlanList = () => {
 
                   {/* btn */}
                   <button
-                    onClick={() => handleJoinNow(plan.subscription_id)}
+                    onClick={() => handleJoinNow(plan.product_id)}
                     className={`${
                       currentIndex === index
                         ? "bg-white text-neutral-500"

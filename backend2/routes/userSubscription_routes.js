@@ -1,16 +1,16 @@
 const express = require("express");
 const {
-  getProductsOfUser,
-  addProductBought,
-} = require("../controllers/userProducts_controller");
+  addSubscriptionBought,
+  getSubscriptionOfUser,
+} = require("../controllers/userSubscription_controller");
 const authenticateUser = require("../controllers/authMiddleware");
 
 const router = express.Router();
 
 //GET ALL PRODUCTS OF A USER
-router.get("/myproducts", authenticateUser, getProductsOfUser);
+router.get("/myproducts", authenticateUser, getSubscriptionOfUser);
 
 //ADD A PRODUCT TO A USER
-router.post("/myproducts", addProductBought);
+router.post("/myproducts", addSubscriptionBought);
 
 module.exports = router;

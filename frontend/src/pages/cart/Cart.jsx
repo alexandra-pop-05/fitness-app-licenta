@@ -30,21 +30,36 @@ const Cart = () => {
     localStorage.setItem("cart", JSON.stringify(cart));
 
     const addPurchasedProductsToUser = async (productId) => {
-      await axios.post("http://localhost:8800/api/myproducts", {
-        user_id: userId,
-        product_id: productId,
-      });
+      try {
+        await axios.post("http://localhost:8800/api/myproducts", {
+          user_id: userId,
+          product_id: productId,
+        });
+        console.log(`Product with ID ${productId} added to user's products.`);
+      } catch (error) {
+        console.log(`Error adding product with ID ${productId} to user's products.`, error);
+      }
     };
 
     const makeRequest = async () => {
       try {
         console.log("cart.total:", cart.total); // Check the value of cart.total
         console.log("cart:", cart); // Check the cart object
-        const res = await axios.post("http://localhost:8800/api/payment", {
-          tokenId: stripeToken.id,
-          amount: cart.total * 100,
-          email: currentUser?.email,
-        });
+
+        const res = await axios.post(
+          "http://localhost:8800/api/payment",
+          {
+            tokenId: stripeToken.id,
+            amount: cart.total * 100,
+            email: currentUser?.email,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${currentUser?.access_token}`,
+            },
+            withCredentials: true,
+          }
+        );
         console.log(res.data);
 
         // clear cart after payment is successful
@@ -62,51 +77,6 @@ const Cart = () => {
     };
     stripeToken && makeRequest();
   }, [stripeToken, cart, navigate]);
-
-  /*   useEffect(() => {
-    // update localStorage when cart state changes
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]); */
-
-  /* const makeRequest = async () => {
-    try {
-      const res = await axios.post("http://localhost:8800/api/payment", {
-        tokenId: stripeToken.id,
-        amount: cart.total * 100,
-        email: currentUser?.email,
-      });
-      console.log(res.data);
-
-      // clear cart after payment is successful
-      dispatch(setCart({ products: [], quantity: 0, total: 0 }));
-
-      const productIds = cart.products.map((product) => product.product_id);
-      for (const productId of productIds) {
-        await axios.post("http://localhost:8800/api/myproducts", {
-          user_id: userId,
-          product_id: productId,
-        });
-      }
-
-      navigate("/myProducts");
-    } catch (error) {
-      console.log(error);
-      setCheckoutError("An error occurred during checkout.");
-    }
-  }; */
-
-  // const [stripeToken, setStripeToken] = useState(null);
-
-  /*   useEffect(() => {
-    if (stripeToken) {
-      makeRequest();
-    }
-  }, [stripeToken]);
-
-  useEffect(() => {
-    // Update localStorage when cart state changes
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]); */
 
   // STRIPE TOKEN
   const onToken = (token) => {
@@ -167,7 +137,7 @@ const Cart = () => {
                     <img
                       src={product.image}
                       alt={product.name}
-                      className="w-32 h-auto object-cover"
+                      className="w-44 h-auto object-cover"
                     />
                   </div>
                   <div className="w-4/5 p-4">
@@ -213,7 +183,6 @@ const Cart = () => {
               token={onToken}
               stripeKey={KEY}
               disabled={cart.products.length === 0}
-              /* email={email} */
             >
               <button className="btn btn-lg rounded-[1px] bg-transparent border border-primary-200 text-primary-200 hover:bg-primary-200 hover:text-white mr-4">
                 Checkout

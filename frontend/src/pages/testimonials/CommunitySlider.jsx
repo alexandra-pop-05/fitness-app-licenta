@@ -18,17 +18,18 @@ const CommunitySlider = ({ testimonials }) => {
     >
       {testimonials.map((testimonial, idx) => {
         // destructure testimonial
-        const { image, name, message } = testimonial;
+        const { image, name, text } = testimonial;
         return (
           <SwiperSlide key={idx}>
             <div className='relative'>
               {/* image */}
-              <div>
-                <img src={image} alt='' />
+              <div className='opacity-80'>
+                <img src={image} alt='' 
+                style={{ width: "500px", height: "500px" }}/>
               </div>
               {/* message & name */}
               <div className='absolute bottom-[30px] p-[20px] text-white text-center'>
-                <div className='mb-8 italic text-lg font-light'>{message}</div>
+                <div className='mb-8 italic text-lg font-light'>{text}</div>
                 <div className='flex items-center justify-center gap-x-[3px]'>
                   <span className='text-[30px] text-primary-200 font-bold'>
                     ~

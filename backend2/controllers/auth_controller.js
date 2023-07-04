@@ -38,8 +38,9 @@ const login = (req, res) => {
   const q = "SELECT * FROM sql_app.users WHERE username = ?";
 
   db.query(q, [req.body.username], (err, data) => {
-    if (err) return res.json(err);
-    if (data.length === 0) return res.status(404).json("User not found!");
+    if (err) return res.json({ error: err });
+    if (data.length === 0)
+      return res.status(404).json({ error: "User not found!" });
 
     //Check password if not error
     //compare the passw from db to the passw we insert
@@ -49,7 +50,7 @@ const login = (req, res) => {
     ); //data is an array and data[0] is our user
 
     if (!isPasswordCorrect)
-      return res.status(400).json("Wrong username or password!");
+      return res.status(400).json({ error: "Wrong username or password!" });
 
     //using JWT for loging for security reasons
     //CREATE TOKEN
